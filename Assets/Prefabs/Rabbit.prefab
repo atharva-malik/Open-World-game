@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &658442092760550562
+--- !u!1001 &165595990431080513
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -74,23 +74,29 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100042, guid: 0962bdca27eaca34aaa15f7fdf608faf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -8235056381166670669}
+      addedObject: {fileID: 4529695923367052203}
     - targetCorrespondingSourceObject: {fileID: 100042, guid: 0962bdca27eaca34aaa15f7fdf608faf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7031411308181572981}
+      addedObject: {fileID: 4781577387723144581}
+    - targetCorrespondingSourceObject: {fileID: 100042, guid: 0962bdca27eaca34aaa15f7fdf608faf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4502963679323837015}
+    - targetCorrespondingSourceObject: {fileID: 100042, guid: 0962bdca27eaca34aaa15f7fdf608faf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6601617660764501491}
   m_SourcePrefab: {fileID: 100100000, guid: 0962bdca27eaca34aaa15f7fdf608faf, type: 3}
---- !u!1 &658442092760648296 stripped
+--- !u!1 &165595990430983819 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100042, guid: 0962bdca27eaca34aaa15f7fdf608faf, type: 3}
-  m_PrefabInstance: {fileID: 658442092760550562}
+  m_PrefabInstance: {fileID: 165595990431080513}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &-8235056381166670669
+--- !u!54 &4529695923367052203
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658442092760648296}
+  m_GameObject: {fileID: 165595990430983819}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -111,13 +117,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &7031411308181572981
+--- !u!65 &4781577387723144581
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658442092760648296}
+  m_GameObject: {fileID: 165595990430983819}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -130,5 +136,34 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.40386963, y: 0.53684425, z: 0.87895966}
+  m_Center: {x: -0.0015125275, y: 0.28302002, z: 0.11801529}
+--- !u!114 &4502963679323837015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165595990430983819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4b8626f92324444a3644f42f159243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.2
+  walkCounter: 0
+  waitCounter: 0
+  isWalking: 0
+--- !u!114 &-6601617660764501491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165595990430983819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6950f555036924483421f919cc8538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: White Rabbit
