@@ -6,8 +6,19 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
+    public static SelectionManager instance {get;set;}
     public GameObject interaction_Info_UI;
     Text interaction_text;
+    public bool onTarget = false;
+
+    private void Awake() {
+        if(instance != null && instance != this){
+            Destroy(gameObject);
+        }
+        else{
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -22,16 +33,20 @@ public class SelectionManager : MonoBehaviour
         {
             var selectionTransform = hit.transform;
 
-            if (selectionTransform.GetComponent<InteractableObject>() && hit.distance <= 7)
+            if (selectionTransform.GetComponent<InteractableObject>() && hit.distance <= 7 && selectionTransform.GetComponent<InteractableObject>().playerInRange)
             {
+                onTarget = true;
                 interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
                 interaction_Info_UI.SetActive(true);
             }
-            else 
+            else
             {
+                onTarget = false;
                 interaction_Info_UI.SetActive(false);
             }
-        }else
+        }else{
+            onTarget = false;
             interaction_Info_UI.SetActive(false);
+        }
     }
 }
