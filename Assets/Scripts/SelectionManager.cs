@@ -10,7 +10,7 @@ public class SelectionManager : MonoBehaviour
     public GameObject interaction_Info_UI;
     Text interaction_text;
     public bool onTarget = false;
-
+    public GameObject selectedObject;
     private void Awake() {
         if(instance != null && instance != this){
             Destroy(gameObject);
@@ -38,6 +38,7 @@ public class SelectionManager : MonoBehaviour
             if (interactable && hit.distance <= 7 && interactable.playerInRange)
             {
                 onTarget = true;
+                selectedObject = interactable.gameObject;
                 interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
                 interaction_Info_UI.SetActive(true);
             }
