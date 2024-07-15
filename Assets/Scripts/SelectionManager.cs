@@ -32,8 +32,10 @@ public class SelectionManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             var selectionTransform = hit.transform;
+            
+            InteractableObject interactable = selectionTransform.GetComponent<InteractableObject>();
 
-            if (selectionTransform.GetComponent<InteractableObject>() && hit.distance <= 7 && selectionTransform.GetComponent<InteractableObject>().playerInRange)
+            if (interactable && hit.distance <= 7 && interactable.playerInRange)
             {
                 onTarget = true;
                 interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
