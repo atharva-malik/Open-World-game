@@ -756,7 +756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 98519294}
-  - component: {fileID: 98519293}
+  - component: {fileID: 98519295}
   m_Layer: 0
   m_Name: PlayerStateSystem
   m_TagString: Untagged
@@ -764,22 +764,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &98519293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98519292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da5c63e76173c1042b7ce949ea9218d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craftingScreenUI: {fileID: 631682320}
-  toolsScreenUI: {fileID: 2066878722}
-  inventoryItemList: []
-  isOpen: 0
 --- !u!4 &98519294
 Transform:
   m_ObjectHideFlags: 0
@@ -795,6 +779,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &98519295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98519292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d010cab7beaca4393e1ffc2567db3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  currentCalories: 0
+  maxCalories: 2000
+  currentHydration: 0
+  maxHydration: 100
 --- !u!1 &106022205
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 126112901}
   - component: {fileID: 126112902}
+  - component: {fileID: 126112903}
   m_Layer: 5
   m_Name: HealthBarContainer
   m_TagString: Untagged
@@ -973,6 +976,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &126112903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126112900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e68fa59c070eb24fb60f21073c4c52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 126112902}
+  healthCounter: {fileID: 802421937}
+  playerState: {fileID: 98519292}
 --- !u!4 &136750891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4908765312130676, guid: 47356d574ebc3a545bfaef26eb02a2ea, type: 3}
@@ -9253,11 +9271,11 @@ SceneRoots:
   - {fileID: 98519294}
   - {fileID: 394384255}
   - {fileID: 1104011142}
+  - {fileID: 1543157245}
   - {fileID: 289054609}
   - {fileID: 515224011}
   - {fileID: 894366047}
   - {fileID: 1352881221}
-  - {fileID: 1543157245}
   - {fileID: 1369405221}
   - {fileID: 1664530419420434754}
   - {fileID: 90419311}

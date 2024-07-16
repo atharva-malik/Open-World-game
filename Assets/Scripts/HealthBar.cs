@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider healthSlider;
+    private Slider healthSlider;
     public Text healthCounter;
     private float currentHealth, maxHealth;
     public GameObject playerState;
@@ -18,5 +18,10 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         currentHealth = playerState.GetComponent<PlayerState>().currentHealth;
+        maxHealth = playerState.GetComponent<PlayerState>().maxHealth;
+        float fillValue = currentHealth / maxHealth;
+        healthSlider.value = fillValue;
+
+        healthCounter.text = currentHealth.ToString() + " / " + maxHealth.ToString();
     }
 }

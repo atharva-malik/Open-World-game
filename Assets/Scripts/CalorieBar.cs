@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CalorieBar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Slider calorieSlider;
+    public Text calorieCounter;
+    private float currentCalorie, maxCalorie;
+    public GameObject playerState;
+
+    void Awake()
     {
-        
+        calorieSlider = GetComponent<Slider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        currentCalorie = playerState.GetComponent<PlayerState>().currentCalories;
+        maxCalorie = playerState.GetComponent<PlayerState>().maxCalories;
+        float fillValue = currentCalorie / maxCalorie;
+        calorieSlider.value = fillValue;
+
+        calorieCounter.text = currentCalorie.ToString() + " / " + maxCalorie.ToString();
     }
 }
