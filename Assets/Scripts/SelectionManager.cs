@@ -11,6 +11,10 @@ public class SelectionManager : MonoBehaviour
     Text interaction_text;
     public bool onTarget = false;
     public GameObject selectedObject;
+
+    public Image centerDotImage;
+    public Image handIcon;
+
     private void Awake() {
         if(instance != null && instance != this){
             Destroy(gameObject);
@@ -23,6 +27,8 @@ public class SelectionManager : MonoBehaviour
     private void Start()
     {
         interaction_text = interaction_Info_UI.GetComponent<Text>();
+        handIcon.enabled = false;
+        centerDotImage.enabled = true;
     }
 
     void Update()
@@ -41,15 +47,28 @@ public class SelectionManager : MonoBehaviour
                 selectedObject = interactable.gameObject;
                 interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
                 interaction_Info_UI.SetActive(true);
+
+                if(interactable.CompareTag("Pickable")){
+                    centerDotImage.enabled = false;
+                    handIcon.enabled = true;
+                }
+                else{
+                    centerDotImage.enabled = true;
+                    handIcon.enabled = false;
+                }
             }
             else
             {
                 onTarget = false;
                 interaction_Info_UI.SetActive(false);
+                centerDotImage.enabled = true;
+                handIcon.enabled = false;
             }
         }else{
             onTarget = false;
             interaction_Info_UI.SetActive(false);
+            centerDotImage.enabled = true;
+            handIcon.enabled = false;
         }
     }
 }
