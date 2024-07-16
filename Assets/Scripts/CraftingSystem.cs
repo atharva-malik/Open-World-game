@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,6 +42,19 @@ public class CraftingSystem : MonoBehaviour
 
         // Axe
         AxeReq1 = toolsScreenUI.transform.Find("Axe/AxeReq1").GetComponent<Text>();
+        AxeReq2 = toolsScreenUI.transform.Find("Axe/AxeReq2").GetComponent<Text>();
+
+        craftAxeBTN = toolsScreenUI.transform.Find("Axe/CraftAxeBTN").GetComponent<Button>();
+        craftAxeBTN.onClick.AddListener(delegate {CraftItem();});
+    }
+
+    private void CraftItem()
+    {
+        InventorySystem.Instance.AddToInventory("Axe");
+        InventorySystem.Instance.RemoveItem();
+        InventorySystem.Instance.ReCalculateList();
+
+        RefreshNeededItems();
     }
 
     void OpenToolsCategory(){
@@ -48,9 +62,9 @@ public class CraftingSystem : MonoBehaviour
         toolsScreenUI.SetActive(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        RefreshNeededItems();
         if (Input.GetKeyDown(KeyCode.C) && !isOpen)
         {
             Debug.Log("Crafting Screen Opened");
@@ -62,7 +76,8 @@ public class CraftingSystem : MonoBehaviour
         {
             craftingScreenUI.SetActive(false);
             toolsScreenUI.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
+            if (!InventorySystem.Instance.isOpen)
+                Cursor.lockState = CursorLockMode.Locked;
             isOpen = false;
         }
     }
