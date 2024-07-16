@@ -12,10 +12,6 @@ public class InventorySystem : MonoBehaviour
     private GameObject slotToEquip;
     public GameObject inventoryScreenUI;
     public bool isOpen;
-    public Transform player;
-
-    private MouseMovement mouseMovement;
-    private PlayerMovement playerMovement;
 
     private void Awake()
     {
@@ -27,8 +23,6 @@ public class InventorySystem : MonoBehaviour
         {
             Instance = this;
         }
-        mouseMovement = player.GetComponent<MouseMovement>();
-        playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     void Start()
@@ -75,16 +69,12 @@ public class InventorySystem : MonoBehaviour
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
-            playerMovement.enabled = false;
-            mouseMovement.enabled = false;
             isOpen = true;
         }
         else if (Input.GetKeyDown(KeyCode.I) && isOpen)
         {
             inventoryScreenUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
-            playerMovement.enabled = true;
-            mouseMovement.enabled = true;
             isOpen = false;
         }
     }

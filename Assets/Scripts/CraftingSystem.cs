@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class CraftingSystem : MonoBehaviour
 {
-    public Transform player;
-
-    private MouseMovement mouseMovement;
-    private PlayerMovement playerMovement;
-
     public GameObject craftingScreenUI;
     public GameObject toolsScreenUI;
 
@@ -24,20 +19,18 @@ public class CraftingSystem : MonoBehaviour
     // Requirement Text
     Text AxeReq1, AxeReq2;
 
-    bool isOpen = false;
+    public bool isOpen = false;
 
     // All Blueprint
 
     public static CraftingSystem Instance { get; set; }
     
     private void Awake() {
-        if (Instance == null && Instance!= this){
+        if (Instance != null && Instance != this){
             Destroy(gameObject);
         }else{
             Instance = this;
         }
-        mouseMovement = player.GetComponent<MouseMovement>();
-        playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     void Start()
@@ -45,6 +38,9 @@ public class CraftingSystem : MonoBehaviour
         isOpen = false;
         toolsBTN = craftingScreenUI.transform.Find("ToolsButton").GetComponent<Button>();
         toolsBTN.onClick.AddListener(delegate {OpenToolsCategory();});
+
+        // Axe
+        AxeReq1 = toolsScreenUI.transform.Find("Axe/AxeReq1").GetComponent<Text>();
     }
 
     void OpenToolsCategory(){
@@ -57,18 +53,16 @@ public class CraftingSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C) && !isOpen)
         {
+            Debug.Log("Crafting Screen Opened");
             craftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
-            playerMovement.enabled = false;
-            mouseMovement.enabled = false;
             isOpen = true;
         }
         else if (Input.GetKeyDown(KeyCode.C) && isOpen)
         {
             craftingScreenUI.SetActive(false);
+            toolsScreenUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
-            playerMovement.enabled = true;
-            mouseMovement.enabled = true;
             isOpen = false;
         }
     }
