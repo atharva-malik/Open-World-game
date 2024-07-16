@@ -19,6 +19,8 @@ public class InventorySystem : MonoBehaviour
     public Text pickupName;
     public Image pickupImage;
 
+    int start = 0;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -67,6 +69,7 @@ public class InventorySystem : MonoBehaviour
         pickupAlert.SetActive(true);
         pickupName.text = itemName;
         pickupImage.sprite = itemSprite;
+        start = 0;
     }
 
     public GameObject findNextEmptySlot(){
@@ -80,6 +83,10 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
+        if (start > 200)
+            pickupAlert.SetActive(false);
+        else
+            start++;
         if (Input.GetKeyDown(KeyCode.I) && !isOpen)
         {
             inventoryScreenUI.SetActive(true);
