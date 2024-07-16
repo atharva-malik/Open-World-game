@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +39,7 @@ public class InventorySystem : MonoBehaviour
     {
         isOpen = false;
         PopulateSlotList();
+        Cursor.visible = false;
     }
 
     private void PopulateSlotList(){
@@ -90,16 +92,24 @@ public class InventorySystem : MonoBehaviour
             start++;
         if (Input.GetKeyDown(KeyCode.I) && !isOpen)
         {
+            Cursor.visible = true;
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+
+            SelectionManager.instance.disableSelection();
+            SelectionManager.instance.GetComponent<SelectionManager>().enabled = false;
+
             isOpen = true;
         }
         else if (Input.GetKeyDown(KeyCode.I) && isOpen)
         {
+            Cursor.visible = false;
             inventoryScreenUI.SetActive(false);
             if(!CraftingSystem.Instance.isOpen)
                 Cursor.lockState = CursorLockMode.Locked;
             isOpen = false;
+            SelectionManager.instance.enableSelection();
+            SelectionManager.instance.GetComponent<SelectionManager>().enabled = true;
         }
     }
 

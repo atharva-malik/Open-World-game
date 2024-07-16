@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f26c800e76b384b89ccbe6876fe6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTrashable: 0
+  isTrashable: 1
   thisName: Stone
   thisDescription: A simple stone
   thisFunctionality: Used for crafting

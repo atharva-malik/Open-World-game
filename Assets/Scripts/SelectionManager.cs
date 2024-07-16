@@ -71,4 +71,19 @@ public class SelectionManager : MonoBehaviour
             handIcon.enabled = false;
         }
     }
+
+    public void disableSelection()
+    {
+        handIcon.enabled = false;
+        centerDotImage.enabled = false;
+        interaction_Info_UI.SetActive(false);
+        selectedObject = null;
+    }
+
+    public void enableSelection()
+    {
+        handIcon.enabled = true;
+        centerDotImage.enabled = true;
+        interaction_Info_UI.SetActive(true);
+    }
 }
