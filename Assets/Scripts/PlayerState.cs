@@ -63,4 +63,19 @@ public class PlayerState : MonoBehaviour
             currentCalories -= 1;
         }
     }
+
+    public void setHydration(float maxHydration)
+    {
+        currentHydration = maxHydration;
+    }
+
+    public void setCalories(float maxCalories)
+    {
+        currentCalories = maxCalories;
+    }
+
+    public void setHealth(float maxHealth)
+    {
+        currentHealth = maxHealth;
+    }
 }

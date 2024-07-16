@@ -13,6 +13,7 @@ public class InventorySystem : MonoBehaviour
     private GameObject slotToEquip;
     public GameObject inventoryScreenUI;
     public bool isOpen;
+    public GameObject ItemInfoUI;
 
     // Pickup Popup
     public GameObject pickupAlert;

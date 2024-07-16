@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8220139995118358438}
   - component: {fileID: 6776046009531303139}
   - component: {fileID: 4557790955596677384}
+  - component: {fileID: 3625595279176393211}
   - component: {fileID: 4649417624406191709}
   m_Layer: 5
   m_Name: Axe
@@ -90,6 +91,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+--- !u!114 &3625595279176393211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432733623924755123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f26c800e76b384b89ccbe6876fe6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTrashable: 0
+  thisName: Axe
+  thisDescription: A sharp tool
+  thisFunctionality: Used to chop down trees
+  isConsumable: 0
+  healthEffect: 0
+  caloriesEffect: 0
+  hydrationEffect: 0
 --- !u!225 &4649417624406191709
 CanvasGroup:
   m_ObjectHideFlags: 0
