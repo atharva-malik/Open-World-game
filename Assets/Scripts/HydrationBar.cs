@@ -22,6 +22,6 @@ public class HydrationBar : MonoBehaviour
         float fillValue = currentHydration / maxHydration;
         hydrationSlider.value = fillValue;
 
-        hydrationCounter.text = currentHydration.ToString() + " / " + maxHydration.ToString();
+        hydrationCounter.text = currentHydration.ToString() + "%";
     }
 }

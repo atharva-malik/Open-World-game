@@ -795,6 +795,7 @@ MonoBehaviour:
   maxHealth: 100
   currentCalories: 0
   maxCalories: 2000
+  player: {fileID: 1352881220}
   currentHydration: 0
   maxHydration: 100
 --- !u!1 &106022205
@@ -807,6 +808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 106022206}
   - component: {fileID: 106022207}
+  - component: {fileID: 106022208}
   m_Layer: 5
   m_Name: HydrationBarContainer
   m_TagString: Untagged
@@ -886,6 +888,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &106022208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106022205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22641d6023ae853499d6f1d7d6999d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hydrationCounter: {fileID: 245450011}
+  playerState: {fileID: 98519292}
 --- !u!1 &126112900
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +1004,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e68fa59c070eb24fb60f21073c4c52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSlider: {fileID: 126112902}
   healthCounter: {fileID: 802421937}
   playerState: {fileID: 98519292}
 --- !u!4 &136750891 stripped
@@ -7402,6 +7417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1760546793}
   - component: {fileID: 1760546794}
+  - component: {fileID: 1760546795}
   m_Layer: 5
   m_Name: CaloriesBarContainer
   m_TagString: Untagged
@@ -7481,6 +7497,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1760546795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760546792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517210eda26436f42bcb4d5d2f55497f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  calorieCounter: {fileID: 1810070286}
+  playerState: {fileID: 98519292}
 --- !u!1 &1810070284
 GameObject:
   m_ObjectHideFlags: 0
