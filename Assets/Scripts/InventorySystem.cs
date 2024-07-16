@@ -43,6 +43,8 @@ public class InventorySystem : MonoBehaviour
         itemToAdd = (GameObject)Instantiate(Resources.Load<GameObject>(ItemName), slotToEquip.transform.position, slotToEquip.transform.rotation);
         itemToAdd.transform.SetParent(slotToEquip.transform);
         itemList.Add(ItemName);
+        ReCalculateList();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
     public bool checkIfFull(){
@@ -91,6 +93,8 @@ public class InventorySystem : MonoBehaviour
                 }
             }
         }
+        ReCalculateList();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
     public void ReCalculateList()

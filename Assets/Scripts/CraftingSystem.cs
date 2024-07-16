@@ -12,13 +12,13 @@ public class CraftingSystem : MonoBehaviour
     public List<string> inventoryItemList = new List<string>();
 
     // Category Buttons
-    public Button toolsBTN;
+    Button toolsBTN;
 
     // Crafting Buttons
-    public Button craftAxeBTN;
+    Button craftAxeBTN;
 
     // Requirement Text
-    public Text AxeReq1, AxeReq2;
+    Text AxeReq1, AxeReq2;
 
     public bool isOpen = false;
 
@@ -33,36 +33,42 @@ public class CraftingSystem : MonoBehaviour
         }else{
             Instance = this;
         }
+        toolsBTN = craftingScreenUI.transform.Find("ToolsButton").GetComponent<Button>();
+        toolsBTN.onClick.AddListener(delegate {OpenToolsCategory();});
+        // Axe
+        AxeReq1 = toolsScreenUI.transform.Find("Axe/req1").GetComponent<Text>();
+        // AxeReq1 = toolsScreenUI.transform.Find("Axe").transform.Find("req1").GetComponent<Text>();
+        AxeReq2 = toolsScreenUI.transform.Find("Axe/req2").GetComponent<Text>();
+        // AxeReq2 = toolsScreenUI.transform.Find("Axe").transform.Find("req2").GetComponent<Text>();
+
+        craftAxeBTN = toolsScreenUI.transform.Find("Axe/Craft").GetComponent<Button>();
+        craftAxeBTN.onClick.AddListener(delegate {CraftItem(AxeBLP);});
     }
 
     void Start()
     {
         craftAxeBTN.interactable = false;
         isOpen = false;
-        // toolsBTN = craftingScreenUI.transform.Find("ToolsButton").GetComponent<Button>();
-        toolsBTN.onClick.AddListener(delegate {OpenToolsCategory();});
-
-        // Axe
-        // AxeReq1 = toolsScreenUI.transform.Find("Axe/req1").GetComponent<Text>();
-        // AxeReq1 = toolsScreenUI.transform.Find("Axe").transform.Find("req1").GetComponent<Text>();
-        // AxeReq2 = toolsScreenUI.transform.Find("Axe/req2").GetComponent<Text>();
-        // AxeReq2 = toolsScreenUI.transform.Find("Axe").transform.Find("req2").GetComponent<Text>();
-
-        // craftAxeBTN = toolsScreenUI.transform.Find("Axe/Craft").GetComponent<Button>();
-        craftAxeBTN.onClick.AddListener(delegate {CraftItem(AxeBLP);});
     }
 
     private void CraftItem(Blueprint BLP){
-        InventorySystem.Instance.AddToInventory(BLP.name);
+        InventorySystem.Instance.AddToInventory(BLP.itemName);
         InventorySystem.Instance.RemoveItem(BLP.Req1, BLP.Req1Amt);
         if (BLP.numberOfRequirements == 2)
             InventorySystem.Instance.RemoveItem(BLP.Req2, BLP.Req2Amt);
-        InventorySystem.Instance.ReCalculateList();
+
+        StartCoroutine(calculate());
 
         RefreshNeededItems();
+
     }
 
-    private void RefreshNeededItems()
+    public IEnumerator calculate(){
+        yield return new WaitForSeconds(1f);
+        InventorySystem.Instance.ReCalculateList();
+    }
+
+    public void RefreshNeededItems()
     {
         int stone_count = 0;
         int stick_count = 0;
@@ -83,7 +89,8 @@ public class CraftingSystem : MonoBehaviour
         AxeReq2.text = "3 Stick [" + stick_count.ToString() + "]";
         if (stone_count >= 3 && stick_count >= 3){
             craftAxeBTN.interactable = true;
-        }
+        }else
+            craftAxeBTN.interactable = false;
     }
 
     void OpenToolsCategory(){
@@ -93,10 +100,8 @@ public class CraftingSystem : MonoBehaviour
 
     void Update()
     {
-        RefreshNeededItems();
         if (Input.GetKeyDown(KeyCode.C) && !isOpen)
         {
-            Debug.Log("Crafting Screen Opened");
             craftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             isOpen = true;
