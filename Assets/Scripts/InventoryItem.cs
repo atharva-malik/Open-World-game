@@ -26,14 +26,23 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     // --- Equipping --- //
     public bool isEquippable;
     private GameObject itemPendingEquipping;
-    public bool isNowEquipped;
-    
+    public bool isInsideQuickSlot;
+
+    public bool isSelected;
+
     private void Start()
     {
         itemInfoUI = InventorySystem.Instance.ItemInfoUI;
         itemInfoUI_itemName = itemInfoUI.transform.Find("ItemName").GetComponent<Text>();
         itemInfoUI_itemDescription = itemInfoUI.transform.Find("ItemDescription").GetComponent<Text>();
         itemInfoUI_itemFunctionality = itemInfoUI.transform.Find("ItemFunctionality").GetComponent<Text>();
+    }
+
+    private void Update() {
+        if (isSelected)
+            gameObject.GetComponent<DragDrop>().enabled = false;
+        else
+            gameObject.GetComponent<DragDrop>().enabled = true;
     }
 
     // Triggered when the mouse enters into the area of the item that has this script.
@@ -62,6 +71,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 itemPendingConsumption = gameObject;
                 consumingFunction(healthEffect, caloriesEffect, hydrationEffect);
             }
+
+            if (isEquippable && isInsideQuickSlot == false && !EquipSystem.Instance.CheckIfFull()){
+                EquipSystem.Instance.AddToQuickSlots(gameObject);
+                isInsideQuickSlot = true;
+            }
         }
     }
 
@@ -75,10 +89,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 DestroyImmediate(gameObject);
                 InventorySystem.Instance.ReCalculateList();
                 CraftingSystem.Instance.RefreshNeededItems();
-            }
-            if (isEquippable && isNowEquipped == false && !EquipSystem.Instance.CheckIfFull()){
-                EquipSystem.Instance.AddToQuickSlots(gameObject);
-                isNowEquipped = true;
             }
         }
     }
