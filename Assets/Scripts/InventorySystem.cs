@@ -59,13 +59,19 @@ public class InventorySystem : MonoBehaviour
         CraftingSystem.Instance.RefreshNeededItems();
     }
 
-    public bool checkIfFull(){
+    public bool checkSlotsAvailable(int emptyNeeded){
+        int counter = 0;
         foreach (GameObject slot in slotList){
             if (slot.transform.childCount == 0){
-                return false;
+                counter += 1;
             }
         }
-        return true;
+        if (counter >= emptyNeeded){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     void TriggerPickupPopUp(string itemName, Sprite itemSprite){
