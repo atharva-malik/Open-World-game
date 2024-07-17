@@ -19,6 +19,8 @@ public class EquipSystem : MonoBehaviour
     
     public GameObject toolHolder;
 
+    public GameObject selectedItemModel;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -77,6 +79,11 @@ public class EquipSystem : MonoBehaviour
                     selectedItem = null;
                 }
 
+                if (selectedItemModel != null){
+                    DestroyImmediate(selectedItemModel.gameObject);
+                    selectedItemModel = null;
+                }
+
                 foreach (Transform child in numbersHolder.transform){
                     child.transform.Find("Text (Legacy)").GetComponent<Text>().color = Color.gray;
                 }
@@ -86,9 +93,14 @@ public class EquipSystem : MonoBehaviour
 
     private void SetEquippedModel(GameObject selectedItem)
     {
+        if (selectedItemModel != null){
+            DestroyImmediate(selectedItemModel.gameObject);
+            selectedItemModel = null;
+        }
+        
         string selectedItemName = selectedItem.name.Replace("(Clone)", "");
-        GameObject itemModel = Instantiate(Resources.Load<GameObject>(selectedItemName + "_Model"), new Vector3(0.6f, 0, 0.4f), Quaternion.Euler(0, 0, 0));
-        itemModel.transform.SetParent(toolHolder.transform, false);
+        selectedItemModel = Instantiate(Resources.Load<GameObject>(selectedItemName + "_Model"), new Vector3(0.6f, 0, 0.4f), Quaternion.Euler(0, 0, 0));
+        selectedItemModel.transform.SetParent(toolHolder.transform, false);
     }
 
     private GameObject getSelectedItem(int slotNum)
