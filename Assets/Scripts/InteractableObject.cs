@@ -13,7 +13,7 @@ public class InteractableObject : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && playerInRange && SelectionManager.instance.onTarget && SelectionManager.instance.selectedObject == gameObject) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && playerInRange && SelectionManager.Instance.onTarget && SelectionManager.Instance.selectedObject == gameObject) {
             if(!InventorySystem.Instance.checkIfFull()){
                 Destroy(gameObject);
                 InventorySystem.Instance.AddToInventory(ItemName);

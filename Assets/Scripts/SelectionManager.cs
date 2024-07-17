@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
-    public static SelectionManager instance {get;set;}
+    public static SelectionManager Instance {get;set;}
     public GameObject interaction_Info_UI;
     Text interaction_text;
     public bool onTarget = false;
@@ -15,12 +15,14 @@ public class SelectionManager : MonoBehaviour
     public Image centerDotImage;
     public Image handIcon;
 
+    public bool handIsVisible;
+
     private void Awake() {
-        if(instance != null && instance != this){
+        if(Instance != null && Instance != this){
             Destroy(gameObject);
         }
         else{
-            instance = this;
+            Instance = this;
         }
     }
 
@@ -51,10 +53,14 @@ public class SelectionManager : MonoBehaviour
                 if(interactable.CompareTag("Pickable")){
                     centerDotImage.enabled = false;
                     handIcon.enabled = true;
+
+                    handIsVisible = true;
                 }
                 else{
                     centerDotImage.enabled = true;
                     handIcon.enabled = false;
+
+                    handIsVisible = false;
                 }
             }
             else
@@ -63,12 +69,16 @@ public class SelectionManager : MonoBehaviour
                 interaction_Info_UI.SetActive(false);
                 centerDotImage.enabled = true;
                 handIcon.enabled = false;
+
+                handIsVisible = false;
             }
         }else{
             onTarget = false;
             interaction_Info_UI.SetActive(false);
             centerDotImage.enabled = true;
             handIcon.enabled = false;
+
+            handIsVisible = false;
         }
     }
 

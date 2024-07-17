@@ -96,8 +96,8 @@ public class InventorySystem : MonoBehaviour
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
 
-            SelectionManager.instance.disableSelection();
-            SelectionManager.instance.GetComponent<SelectionManager>().enabled = false;
+            SelectionManager.Instance.disableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
 
             isOpen = true;
         }
@@ -108,8 +108,8 @@ public class InventorySystem : MonoBehaviour
             if(!CraftingSystem.Instance.isOpen)
                 Cursor.lockState = CursorLockMode.Locked;
             isOpen = false;
-            SelectionManager.instance.enableSelection();
-            SelectionManager.instance.GetComponent<SelectionManager>().enabled = true;
+            SelectionManager.Instance.enableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
         }
     }
 

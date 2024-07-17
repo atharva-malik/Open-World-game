@@ -106,8 +106,8 @@ public class CraftingSystem : MonoBehaviour
             craftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             isOpen = true;
-            SelectionManager.instance.disableSelection();
-            SelectionManager.instance.GetComponent<SelectionManager>().enabled = false;
+            SelectionManager.Instance.disableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
         }
         else if (Input.GetKeyDown(KeyCode.C) && isOpen)
         {
@@ -116,8 +116,8 @@ public class CraftingSystem : MonoBehaviour
             if (!InventorySystem.Instance.isOpen){
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                SelectionManager.instance.enableSelection();
-                SelectionManager.instance.GetComponent<SelectionManager>().enabled = true;
+                SelectionManager.Instance.enableSelection();
+                SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
             }
             isOpen = false;
         }

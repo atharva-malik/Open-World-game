@@ -13,7 +13,7 @@ public class EquipabbleItem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && InventorySystem.Instance.isOpen == false && !CraftingSystem.Instance.isOpen){
+        if (Input.GetMouseButtonDown(0) && !InventorySystem.Instance.isOpen && !CraftingSystem.Instance.isOpen && !SelectionManager.Instance.handIsVisible){
             animator.SetTrigger("hit");
         }
     }
