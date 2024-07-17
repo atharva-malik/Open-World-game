@@ -12,6 +12,8 @@ public class EquipSystem : MonoBehaviour
     public List<GameObject> quickSlotsList = new List<GameObject>();
     public List<string> itemList = new List<string>();
 
+    public GameObject numbersHolder;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

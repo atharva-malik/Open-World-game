@@ -23,6 +23,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public float caloriesEffect;
     public float hydrationEffect;
 
+    // --- Equipping --- //
+    public bool isEquippable;
+    private GameObject itemPendingEquipping;
+    public bool isNowEquipped;
+    
     private void Start()
     {
         itemInfoUI = InventorySystem.Instance.ItemInfoUI;
@@ -70,6 +75,10 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 DestroyImmediate(gameObject);
                 InventorySystem.Instance.ReCalculateList();
                 CraftingSystem.Instance.RefreshNeededItems();
+            }
+            if (isEquippable && isNowEquipped == false && !EquipSystem.Instance.CheckIfFull()){
+                EquipSystem.Instance.AddToQuickSlots(gameObject);
+                isNowEquipped = true;
             }
         }
     }
