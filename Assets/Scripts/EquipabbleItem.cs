@@ -14,6 +14,7 @@ public class EquipabbleItem : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !InventorySystem.Instance.isOpen && !CraftingSystem.Instance.isOpen && !SelectionManager.Instance.handIsVisible){
+            SoundManager.Instance.PlaySound(SoundManager.Instance.toolSwingSound);
             animator.SetTrigger("hit");
         }
     }
@@ -22,6 +23,7 @@ public class EquipabbleItem : MonoBehaviour
         GameObject selectedTree = SelectionManager.Instance.selectedTree;
 
         if (selectedTree!= null){
+            SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
             selectedTree.GetComponent<ChoppableTree>().GetHit();
         }
     }

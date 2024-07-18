@@ -64,6 +64,8 @@ public class CraftingSystem : MonoBehaviour
     }
 
     private void CraftItem(Blueprint BLP){
+        SoundManager.Instance.PlaySound(SoundManager.Instance.craftingSound);
+
         for (int i = 0; i < BLP.numberOfItemsToProduce; i++)
             InventorySystem.Instance.AddToInventory(BLP.itemName);
         

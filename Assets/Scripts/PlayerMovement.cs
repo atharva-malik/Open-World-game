@@ -15,7 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     Vector3 velocity;
-    bool isGrounded;
+    bool isGrounded = false;
+
+    private Vector3 lastPos = new Vector3(0, 0, 0);
 
     // Update is called once per frame
     void Update()
@@ -46,6 +48,12 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+        if(lastPos != transform.position && isGrounded){
+            SoundManager.Instance.PlaySound(SoundManager.Instance.grassWalkSound);
+        }else{
+            SoundManager.Instance.grassWalkSound.Stop();
+        }
+        lastPos = transform.position;
     }
 
 }

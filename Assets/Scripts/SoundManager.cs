@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource chopSound;
     public AudioSource pickupItemSound;
     public AudioSource grassWalkSound;
+    public AudioSource startingZoneBGMusic; // Background music
 
     private void Awake() {
         if(Instance != null && Instance != this){
