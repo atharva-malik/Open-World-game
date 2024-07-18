@@ -12,6 +12,8 @@ TagManager:
   - Ground
   - Tree
   - placedFoundation
+  - wallGhost
+  - placedWall
   layers:
   - Default
   - TransparentFX
