@@ -90,15 +90,8 @@ public class CraftingSystem : MonoBehaviour
         if (BLP.numberOfRequirements == 2)
             InventorySystem.Instance.RemoveItem(BLP.Req2, BLP.Req2Amt);
 
-        StartCoroutine(calculate());
-
-        RefreshNeededItems();
-
-    }
-
-    public IEnumerator calculate(){
-        yield return new WaitForSeconds(1f);
         InventorySystem.Instance.ReCalculateList();
+        RefreshNeededItems();
     }
 
     public void RefreshNeededItems()
@@ -111,6 +104,7 @@ public class CraftingSystem : MonoBehaviour
         inventoryItemList = InventorySystem.Instance.itemList;
         
         foreach (string item in inventoryItemList){
+            Debug.Log(item);
             switch (item){
                 case "Stone":
                     stone_count++;

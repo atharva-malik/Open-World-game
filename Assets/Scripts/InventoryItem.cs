@@ -126,12 +126,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 InventorySystem.Instance.ReCalculateList();
                 CraftingSystem.Instance.RefreshNeededItems();
             }
-
-            if (isUseable && itemPendingUse == gameObject){
-                DestroyImmediate(gameObject);
-                InventorySystem.Instance.ReCalculateList();
-                CraftingSystem.Instance.RefreshNeededItems();
-            }
         }
     }
 

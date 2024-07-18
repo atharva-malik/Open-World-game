@@ -57,7 +57,6 @@ public class ConstructionManager : MonoBehaviour
         List<GameObject> ghostlist = itemToBeConstructed.gameObject.GetComponent<Constructable>().ghostList;
         foreach (GameObject ghost in ghostlist)
         {
-            Debug.Log(ghost);
             allGhostsInExistence.Add(ghost);
         }
     }
@@ -177,12 +176,13 @@ public class ConstructionManager : MonoBehaviour
         }
         // Right Mouse Click to Cancel                      //TODO - don't destroy the ui item until you actually placed it.
         if (Input.GetMouseButtonDown(0) && isValidPlacement)
-        {     // Left Mouse Button
+        {
         }
     }
 
     private void PlaceItemInGhostPosition(GameObject copyOfGhost)
     {
+        InventorySystem.Instance.RemoveItem(itemToBeConstructed.transform.name.Replace("(Clone)", "").Replace("Model", ""), 1);
 
         Vector3 ghostPosition = copyOfGhost.transform.position;
         Quaternion ghostRotation = copyOfGhost.transform.rotation;
@@ -214,8 +214,16 @@ public class ConstructionManager : MonoBehaviour
         inConstructionMode = false;
     }
 
+    public void DestroyItem(GameObject item){
+        DestroyImmediate(item);
+        InventorySystem.Instance.ReCalculateList();
+        CraftingSystem.Instance.RefreshNeededItems();
+    }
+
     private void PlaceItemFreeStyle()
     {
+        InventorySystem.Instance.RemoveItem(itemToBeConstructed.transform.name.Replace("(Clone)", "").Replace("Model", ""), 1);
+
         // Setting the parent to be the root of our scene
         itemToBeConstructed.transform.SetParent(transform.parent.transform.parent, true);
 

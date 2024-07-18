@@ -140,10 +140,13 @@ public class InventorySystem : MonoBehaviour
         itemList.Clear();
         foreach (GameObject slot in slotList){
             if (slot.transform.childCount > 0){
+                Debug.Log(slot.transform.GetChild(0).name);
                 string name = slot.transform.GetChild(0).name;
                 string result = name.Replace("(Clone)", "");
                 itemList.Add(result);
             }
         }
+
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 }
