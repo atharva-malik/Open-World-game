@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 public class Constructable : MonoBehaviour
 {
     // Validation
     public bool isGrounded;
     public bool isOverlappingItems;
     public bool isValidToBeBuilt;
-    public bool detectedGhostMemeber;
+    public bool detectedGhostMember;
 
     // Material related
     private Renderer mRenderer;
@@ -19,7 +19,7 @@ public class Constructable : MonoBehaviour
 
     public List<GameObject> ghostList = new List<GameObject>();
 
-    public BoxCollider solidCollider; // We need to drag this collider manualy into the inspector
+    public BoxCollider solidCollider; // We need to drag this collider manually into the inspector
 
     private void Start()
     {
@@ -50,13 +50,13 @@ public class Constructable : MonoBehaviour
         {
             isGrounded = true; 
         }
-        if (other.CompareTag("Tree") || other.CompareTag("pickable") && gameObject.CompareTag("activeConstructable"))
+        if (other.CompareTag("Tree") || other.CompareTag("Pickable") && gameObject.CompareTag("activeConstructable"))
         {
             isOverlappingItems = true;
         }
         if (other.gameObject.CompareTag("ghost") && gameObject.CompareTag("activeConstructable"))
         {
-            detectedGhostMemeber = true;
+            detectedGhostMember = true;
         }
     }
 
@@ -66,13 +66,13 @@ public class Constructable : MonoBehaviour
         {
             isGrounded = false;
         }
-        if (other.CompareTag("Tree") || other.CompareTag("pickable") && gameObject.CompareTag("activeConstructable"))
+        if (other.CompareTag("Tree") || other.CompareTag("Pickable") && gameObject.CompareTag("activeConstructable"))
         {
             isOverlappingItems = false;
         }
         if (other.gameObject.CompareTag("ghost") && gameObject.CompareTag("activeConstructable"))
         {
-            detectedGhostMemeber = false;
+            detectedGhostMember = false;
         }
     }
     public void SetInvalidColor()
@@ -96,7 +96,7 @@ public class Constructable : MonoBehaviour
         foreach (GameObject item in ghostList)
         {
             item.transform.SetParent(transform.parent, true);
-          //  item.gameObject.GetComponent<GhostItem>().solidCollider.enabled = false;
+            //item.gameObject.GetComponent<GhostItem>().solidCollider.enabled = false;
             item.gameObject.GetComponent<GhostItem>().isPlaced = true;
         }
     }

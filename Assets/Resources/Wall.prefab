@@ -114,6 +114,8 @@ MonoBehaviour:
   isEquippable: 0
   isInsideQuickSlot: 0
   isSelected: 0
+  isUseable: 1
+  itemPendingUse: {fileID: 0}
 --- !u!225 &4649417624406191709
 CanvasGroup:
   m_ObjectHideFlags: 0

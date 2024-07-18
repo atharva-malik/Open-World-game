@@ -193,6 +193,7 @@ MonoBehaviour:
   treeMaxHealth: 10
   treeHealth: 0
   animator: {fileID: 0}
+  caloriesSpentChoppingWood: 20
 --- !u!1 &5814223165815287327
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ GameObject:
   - component: {fileID: 2811903314367985613}
   m_Layer: 0
   m_Name: Tree_Parent
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

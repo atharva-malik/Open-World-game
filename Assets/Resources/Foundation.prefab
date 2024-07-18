@@ -106,7 +106,7 @@ MonoBehaviour:
   isTrashable: 1
   thisName: Foundation
   thisDescription: The base required to build anything
-  thisFunctionality: Allows you to build stuff!
+  thisFunctionality: Right-Click to position the item!
   isConsumable: 0
   healthEffect: 0
   caloriesEffect: 0
@@ -114,6 +114,8 @@ MonoBehaviour:
   isEquippable: 0
   isInsideQuickSlot: 0
   isSelected: 0
+  isUseable: 1
+  itemPendingUse: {fileID: 0}
 --- !u!225 &4649417624406191709
 CanvasGroup:
   m_ObjectHideFlags: 0
