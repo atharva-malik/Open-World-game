@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -29,6 +31,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public bool isInsideQuickSlot;
 
     public bool isSelected;
+
+    public bool isUseable;
+    public GameObject itemPendingUse;
 
     private void Start()
     {
@@ -76,6 +81,37 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 EquipSystem.Instance.AddToQuickSlots(gameObject);
                 isInsideQuickSlot = true;
             }
+
+            if (isUseable){
+                itemPendingUse = gameObject;
+                UseItem();
+            }
+        }
+    }
+
+    private void UseItem()
+    {
+        itemInfoUI.SetActive(false);
+
+        InventorySystem.Instance.isOpen = false;
+        InventorySystem.Instance.inventoryScreenUI.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        SelectionManager.Instance.enableSelection();
+        SelectionManager.Instance.enabled = true;
+
+        switch (gameObject.name){
+            case "Foundation(Clone)":
+                ConstructionManager.Instance.ActivateConstructionPlacement("FoundationModel");
+                break;
+            case "Foundation":
+                ConstructionManager.Instance.ActivateConstructionPlacement("FoundationModel"); // Testing only!
+                break;
+            default:
+                // Do nothing
+                break;
         }
     }
 
@@ -86,6 +122,12 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if (isConsumable && itemPendingConsumption == gameObject)
             {
+                DestroyImmediate(gameObject);
+                InventorySystem.Instance.ReCalculateList();
+                CraftingSystem.Instance.RefreshNeededItems();
+            }
+
+            if (isUseable && itemPendingUse == gameObject){
                 DestroyImmediate(gameObject);
                 InventorySystem.Instance.ReCalculateList();
                 CraftingSystem.Instance.RefreshNeededItems();

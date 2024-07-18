@@ -71,7 +71,7 @@ public class CraftingSystem : MonoBehaviour
         WallReq1 = constructionScreenUI.transform.Find("Wall/req1").GetComponent<Text>();
 
         craftWallBTN = constructionScreenUI.transform.Find("Wall/Craft").GetComponent<Button>();
-        craftWallBTN.onClick.AddListener(delegate {CraftItem(PlankBLP);});
+        craftWallBTN.onClick.AddListener(delegate {CraftItem(WallBLP);});
     }
 
     void Start()
