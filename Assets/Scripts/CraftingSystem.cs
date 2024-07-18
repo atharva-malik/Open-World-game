@@ -60,6 +60,18 @@ public class CraftingSystem : MonoBehaviour
 
         craftPlankBTN = refineScreenUI.transform.Find("Planks/Craft").GetComponent<Button>();
         craftPlankBTN.onClick.AddListener(delegate {CraftItem(PlankBLP);});
+
+        // Foundation
+        FoundationReq1 = constructionScreenUI.transform.Find("Foundation/req1").GetComponent<Text>();
+
+        craftFoundationBTN = constructionScreenUI.transform.Find("Foundation/Craft").GetComponent<Button>();
+        craftFoundationBTN.onClick.AddListener(delegate {CraftItem(FoundationBLP);});
+        
+        // Wall
+        WallReq1 = constructionScreenUI.transform.Find("Wall/req1").GetComponent<Text>();
+
+        craftWallBTN = constructionScreenUI.transform.Find("Wall/Craft").GetComponent<Button>();
+        craftWallBTN.onClick.AddListener(delegate {CraftItem(PlankBLP);});
     }
 
     void Start()
@@ -111,7 +123,7 @@ public class CraftingSystem : MonoBehaviour
                     break;
                 case "Plank":
                     plank_count++;
-                    break
+                    break;
             }
         }
 
@@ -129,6 +141,20 @@ public class CraftingSystem : MonoBehaviour
             craftPlankBTN.interactable = true;
         }else
             craftPlankBTN.interactable = false;
+
+        //---- Foundation ----//
+        FoundationReq1.text = "4 Plank [" + plank_count.ToString() + "]";
+        if (plank_count >= 4 && InventorySystem.Instance.checkSlotsAvailable(1)){
+            craftFoundationBTN.interactable = true;
+        }else
+            craftFoundationBTN.interactable = false;
+
+        //---- Wall ----//
+        WallReq1.text = "2 Plank [" + plank_count.ToString() + "]";
+        if (plank_count >= 2 && InventorySystem.Instance.checkSlotsAvailable(1)){
+            craftWallBTN.interactable = true;
+        }else
+            craftWallBTN.interactable = false;
     }
 
     void OpenToolsCategory(){
@@ -180,6 +206,7 @@ public class CraftingSystem : MonoBehaviour
             toolsScreenUI.SetActive(false);
             survivalScreenUI.SetActive(false);
             refineScreenUI.SetActive(false);
+            constructionScreenUI.SetActive(false);
             if (!InventorySystem.Instance.isOpen){
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;

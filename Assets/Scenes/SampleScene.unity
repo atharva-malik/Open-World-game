@@ -13639,7 +13639,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Plank x 2
+  m_Text: Wall
 --- !u!222 &1628702677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16804,7 +16804,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Plank x 2
+  m_Text: Foundation
 --- !u!222 &2135574777
 CanvasRenderer:
   m_ObjectHideFlags: 0
