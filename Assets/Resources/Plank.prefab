@@ -105,7 +105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTrashable: 1
   thisName: Plank
-  thisDescription: Crafted from trees found practically everywhere!
+  thisDescription: Wooden planks are a very common material, processed from trees
+    found practically everywhere.
   thisFunctionality: Used to craft various items, and used in construction as well
   isConsumable: 0
   healthEffect: 0

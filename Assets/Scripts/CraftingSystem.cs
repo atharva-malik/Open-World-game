@@ -23,8 +23,8 @@ public class CraftingSystem : MonoBehaviour
     public bool isOpen = false;
 
     // All Blueprints
-    private Blueprint AxeBLP = new Blueprint("Axe", "Stone", "Stick", 3, 3, 2);
-    private Blueprint PlankBLP = new Blueprint("Plank", "Log", "", 1, 0, 1);
+    private Blueprint AxeBLP = new Blueprint(1, "Axe", "Stone", "Stick", 3, 3, 2);
+    private Blueprint PlankBLP = new Blueprint(2, "Plank", "Log", "", 1, 0, 1);
 
     public static CraftingSystem Instance { get; set; }
     
@@ -64,7 +64,9 @@ public class CraftingSystem : MonoBehaviour
     }
 
     private void CraftItem(Blueprint BLP){
-        InventorySystem.Instance.AddToInventory(BLP.itemName);
+        for (int i = 0; i < BLP.numberOfItemsToProduce; i++)
+            InventorySystem.Instance.AddToInventory(BLP.itemName);
+        
         InventorySystem.Instance.RemoveItem(BLP.Req1, BLP.Req1Amt);
         if (BLP.numberOfRequirements == 2)
             InventorySystem.Instance.RemoveItem(BLP.Req2, BLP.Req2Amt);
