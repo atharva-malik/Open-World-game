@@ -97,7 +97,7 @@ public class InventorySystem : MonoBehaviour
             pickupAlert.SetActive(false);
         else
             start++;
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.I) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
         {
             Cursor.visible = true;
             inventoryScreenUI.SetActive(true);
@@ -140,7 +140,6 @@ public class InventorySystem : MonoBehaviour
         itemList.Clear();
         foreach (GameObject slot in slotList){
             if (slot.transform.childCount > 0){
-                Debug.Log(slot.transform.GetChild(0).name);
                 string name = slot.transform.GetChild(0).name;
                 string result = name.Replace("(Clone)", "");
                 itemList.Add(result);

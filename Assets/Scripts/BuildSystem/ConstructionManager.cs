@@ -20,6 +20,7 @@ public class ConstructionManager : MonoBehaviour
     public Material ghostSelectedMat;
     public Material ghostSemiTransparentMat;
     public Material ghostFullTransparentMat;
+    public GameObject itemToBeDestroyed;
 
     // We keep a reference to all ghosts currently in our world,
     // so the manager can monitor them for various operations
@@ -167,23 +168,28 @@ public class ConstructionManager : MonoBehaviour
             if (isValidPlacement && selectedGhost == false) // We don't want the freestyle to be triggered when we select a ghost.
             {
                 PlaceItemFreeStyle();
+                DestroyItem(itemToBeDestroyed);
             }
 
             if (selectingAGhost)
             {
                 PlaceItemInGhostPosition(selectedGhost);
+                DestroyItem(itemToBeDestroyed);
             }
         }
-        // Right Mouse Click to Cancel                      //TODO - don't destroy the ui item until you actually placed it.
-        if (Input.GetMouseButtonDown(0) && isValidPlacement)
+        // Right Mouse Click to Cancel
+        if (Input.GetKeyDown(KeyCode.X))
         {
+            itemToBeDestroyed.SetActive(true);
+            itemToBeDestroyed = null;
+            DestroyItem(itemToBeConstructed);
+            itemToBeConstructed = null;
+            inConstructionMode = false;
         }
     }
 
     private void PlaceItemInGhostPosition(GameObject copyOfGhost)
     {
-        InventorySystem.Instance.RemoveItem(itemToBeConstructed.transform.name.Replace("(Clone)", "").Replace("Model", ""), 1);
-
         Vector3 ghostPosition = copyOfGhost.transform.position;
         Quaternion ghostRotation = copyOfGhost.transform.rotation;
 
@@ -222,8 +228,6 @@ public class ConstructionManager : MonoBehaviour
 
     private void PlaceItemFreeStyle()
     {
-        InventorySystem.Instance.RemoveItem(itemToBeConstructed.transform.name.Replace("(Clone)", "").Replace("Model", ""), 1);
-
         // Setting the parent to be the root of our scene
         itemToBeConstructed.transform.SetParent(transform.parent.transform.parent, true);
 

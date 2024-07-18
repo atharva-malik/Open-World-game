@@ -104,7 +104,6 @@ public class CraftingSystem : MonoBehaviour
         inventoryItemList = InventorySystem.Instance.itemList;
         
         foreach (string item in inventoryItemList){
-            Debug.Log(item);
             switch (item){
                 case "Stone":
                     stone_count++;
@@ -185,7 +184,7 @@ public class CraftingSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.C) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
         {
             Cursor.visible = true;
             craftingScreenUI.SetActive(true);
