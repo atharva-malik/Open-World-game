@@ -22,6 +22,8 @@ public class ConstructionManager : MonoBehaviour
     public Material ghostFullTransparentMat;
     public GameObject itemToBeDestroyed;
 
+    public GameObject player;
+
     // We keep a reference to all ghosts currently in our world,
     // so the manager can monitor them for various operations
     public List<GameObject> allGhostsInExistence = new List<GameObject>();
@@ -189,6 +191,8 @@ public class ConstructionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             itemToBeDestroyed.SetActive(true);
+            selectedGhost = null;
+            selectingAGhost = false;
             itemToBeDestroyed = null;
             DestroyItem(itemToBeConstructed);
             itemToBeConstructed = null;
@@ -208,7 +212,9 @@ public class ConstructionManager : MonoBehaviour
         // Setting the parent to be the root of our scene
         itemToBeConstructed.transform.SetParent(transform.parent.transform.parent, true);
 
-        itemToBeConstructed.transform.position = ghostPosition;
+        var randomOffset = UnityEngine.Random.Range(0.01f, 0.03f); // This is to avoid "z-fighting"
+
+        itemToBeConstructed.transform.position = new Vector3(ghostPosition.x, ghostPosition.y, ghostPosition.z + randomOffset);
         itemToBeConstructed.transform.rotation = ghostRotation;
 
         // Enabling back the solider collider that we disabled earlier
@@ -228,7 +234,7 @@ public class ConstructionManager : MonoBehaviour
         }
         else{
             itemToBeConstructed.tag = "placedWall";
-            DestroyItem(itemToBeConstructed);
+            DestroyItem(selectedGhost);
         }
 
         itemToBeConstructed = null;

@@ -16,6 +16,15 @@ public class EquipabbleItem : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !InventorySystem.Instance.isOpen && !CraftingSystem.Instance.isOpen && !SelectionManager.Instance.handIsVisible && !ConstructionManager.Instance.inConstructionMode){
             SoundManager.Instance.PlaySound(SoundManager.Instance.toolSwingSound);
             animator.SetTrigger("hit");
+            // PlayerState.Instance.currentCalories -= 10f;
+            StartCoroutine(graduallyReduceCalories());
+        }
+    }
+
+    IEnumerator graduallyReduceCalories(){
+        for (int i = 0; i < 10; i++){
+            yield return new WaitForSeconds(0.01f);
+            PlayerState.Instance.currentCalories -= 1;
         }
     }
 
