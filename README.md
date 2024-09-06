@@ -1,6 +1,7 @@
-# Open World Ga,e
+# Open World Game
 
 ![image](https://github.com/user-attachments/assets/7f59fc20-10f7-46e3-9f0b-f9c54b030633)
+
 This is my first attempt at creating an Open World, RPG game in Unity. This is currently a WIP, and there will hopefully be a built version released soon!
 
 ## Installation and Running
